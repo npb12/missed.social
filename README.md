@@ -5,7 +5,7 @@ missed.social
 
 * Code should use two spaces, _not_ tabs, for indentation
 * Naming conventions:
-  * Model class names should use `Snake_Case` with underscores between words
+  * Model class names should use `Snake_Case` with capitals for each word
   * Model fields should use `camelCase` with the first letter lowercase
   * Functions, usually found in your `views.py` files, but not exclusively, should use `snake_case` with all lower case
   * Any `choice` fields in a model field which reference a `choice` variable, the choice variable itself should use `SNAKE_CASE` with all capitals.
