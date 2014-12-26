@@ -26,6 +26,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+template_dir = "/var/www/ms/templates"
+TEMPLATE_DIRS = (
+    template_dir
+)
 
 # Application definition
 
@@ -36,6 +40,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ms',
+    'south',
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,8 +64,10 @@ WSGI_APPLICATION = 'ms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': './db.cnf',
+        }
     }
 }
 
@@ -79,4 +88,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+MEDIA_ROOT = '/var/www/ms/ms/media/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/var/www/ms/ms/static/'
 STATIC_URL = '/static/'
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
