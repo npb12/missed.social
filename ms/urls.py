@@ -14,4 +14,5 @@ urlpatterns = patterns('',
     url(r'^user/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^landing/$', TemplateView.as_view(template_name = "pages/ms/landing.html")),
+    url(r'^$', TemplateView.as_view(template_name = "pages/ms/landing.html")),
 )
