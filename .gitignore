@@ -1,0 +1,3 @@
+.ms/settings.py
+*.pyc
+db.cnf
