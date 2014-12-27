@@ -1,0 +1,23 @@
+{% extends "basics/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<h1>Generate Sample Data</h1>
+<hr>
+<br>
+<form action="" method="POST">
+  {% csrf_token %}
+  <table>
+    <tr><td width=150>{{ form.user.label }}</td><td width=200>{{ form.user }}</td><td>{{ form.user.errors }}</td></tr>
+    <tr><td>{{ form.startDate.label }}</td><td>{{ form.startDate }}</td><td>{{ form.startDate.errors }}</td></tr>
+    <tr><td>{{ form.startLat.label }}</td><td>{{ form.startLat }}</td><td>{{ form.startLat.errors }}</td></tr>
+    <tr><td>{{ form.startLong.label }}</td><td>{{ form.startLong }}</td><td>{{ form.startLong.errors }}</td></tr>
+    <tr><td>{{ form.makeStop.label }}</td><td>{{ form.makeStop }}</td><td>{{ form.makeStop.errors }}</td></tr>
+    <tr><td>{{ form.heading.label }}</td><td>{{ form.heading }}</td><td>{{ form.heading.errors }}</td></tr>
+    <tr><td><br><br></td><td></td><td></td></tr>
+    <tr><td></td><td><input class="btn btn-default" type="submit" value="Save"></td><td></td></tr>
+  </table>
+</form>
+
+{% endblock %}
+
