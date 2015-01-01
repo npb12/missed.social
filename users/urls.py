@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^profile/$', TemplateView.as_view(template_name = "pages/users/profile.html")),
+    url(r'^all/$', TemplateView.as_view(template_name = "pages/users/profile.html")),
 )
 
 if settings.DEBUG:

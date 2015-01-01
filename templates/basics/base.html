@@ -18,9 +18,18 @@
   <body>
     <div class="row">
       <br><br>
-      <div class="col-md-1">
+      <div class="col-md-2">
+        <center>
+          <br>
+          <ul class="menu" style="width: 150px; font-family: 'Raleway'; font-size: 12px">
+            <li class="ui-widget-header">missed.social</li>
+            <li><a href="{% url 'ms.views.sample_gps_data' %}">Sample Data Form</a></li>
+            <li class="ui-widget-header">users</li>
+            <li>All Users</li>
+          </ul>
+        </center>
       </div>
-      <div class="col-md-10">
+      <div class="col-md-9">
         {% block content %}
 
         {% endblock %}

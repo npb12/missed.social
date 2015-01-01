@@ -26,7 +26,7 @@ class Location(models.Model):
   user = models.ForeignKey(User, verbose_name = 'Related User')
   latitude = models.DecimalField(max_digits = 10, decimal_places = 8, default = 1, verbose_name = 'Latitude')
   longitude = models.DecimalField(max_digits = 10, decimal_places = 8, default = 1, verbose_name = 'Longitude')
-  timeStamp = models.DateField(verbose_name = 'Time Stamp', default = datetime.datetime.now())
+  timeStamp = models.DateTimeField(verbose_name = 'Time Stamp', default = datetime.datetime.now())
 
   def __unicode__(self):
     return u'%s - %s' % (self.user, self.timeStamp)

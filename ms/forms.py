@@ -14,6 +14,6 @@ class Sample_Data_Form(forms.Form):
   user = forms.ModelChoiceField(queryset=allUsers, label = 'User')
   makeStop = forms.BooleanField(label = 'Make a stop?', required = False)
   heading = forms.ChoiceField(label = 'Which general direction?', choices = HEADING_CHOICES)
-  startDate = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}), label = 'Start Time/Date')
+  startDate = forms.DateTimeField(widget=forms.TextInput(attrs={'class':'datepicker'}), label = 'Start Date/Time')
 
 
