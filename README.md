@@ -7,8 +7,10 @@ missed.social
 * Naming conventions:
   * Model class names should use `Snake_Case` with capitals for each word
   * Model fields should use `camelCase` with the first letter lowercase
+  * Variables within a function should also use `camelCase` with the first letter lowercase
   * Functions, usually found in your `views.py` files, but not exclusively, should use `snake_case` with all lower case
   * Any `choice` fields in a model field which reference a `choice` variable, the choice variable itself should use `SNAKE_CASE` with all capitals.
+* Any `Form` classes, should end with the word `Form` and also use `Snake_Case` with capials. Example: `User_Profile_Form`
 * Use succint comments, where needed
 * Each function should have a brief outline, in comment, immediately above the function itself
 
