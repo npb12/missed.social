@@ -4,8 +4,16 @@ from django.contrib import admin
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
+from tastypie.api import Api
 admin.autodiscover()
 
+from users.api import UserResource, LocationResource
+
+v1_api = Api(api_name='v1')
+v1_api.register(UserResource())
+v1_api.register(LocationResource())
+
+user_resource = UserResource()
 
 urlpatterns = patterns('',
     # Examples:
@@ -14,6 +22,7 @@ urlpatterns = patterns('',
 
     url(r'^profile/$', TemplateView.as_view(template_name = "pages/users/profile.html")),
     url(r'^all/$', TemplateView.as_view(template_name = "pages/users/profile.html")),
+    url(r'^api/', include(v1_api.urls)),
 )
 
 if settings.DEBUG:
