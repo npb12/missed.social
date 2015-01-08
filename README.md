@@ -24,6 +24,10 @@ When you are running the Django project on your local machine there are a few th
   * I would suggest ignoring any `*.pyc` files too. 
 * Make sure to creat your own copies of these files which are specific to your machine
 
+#Testing with Zeus#
+
+When you want to do testing directly on Zeus you'll need to run the development web server which comes with Django. To start this development web server, navigate to the project root on Zeus (`/var/www/ms`). Then issue the command: `python manage.py runserver 0.0.0.0:8000` (these _are_ the numbers to use) This will allow the development web server to bind to the server's actual IP address. Then in your web browser on your local machine, you should be able to navigate to `23.239.3.97:8000` and see the Django project running. 
+
 
 #Model Migrations
 
