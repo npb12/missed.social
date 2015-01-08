@@ -36,9 +36,9 @@ class Migration(SchemaMigration):
         db.create_table(u'users_location', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.User'])),
-            ('latitude', self.gf('django.db.models.fields.DecimalField')(default=1, max_digits=10, decimal_places=5)),
-            ('longitude', self.gf('django.db.models.fields.DecimalField')(default=1, max_digits=10, decimal_places=5)),
-            ('timeStamp', self.gf('django.db.models.fields.DateField')(default=datetime.datetime(2014, 12, 26, 0, 0))),
+            ('latitude', self.gf('django.db.models.fields.DecimalField')(default=1, max_digits=10, decimal_places=8)),
+            ('longitude', self.gf('django.db.models.fields.DecimalField')(default=1, max_digits=10, decimal_places=8)),
+            ('timeStamp', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2015, 1, 8, 0, 0))),
         ))
         db.send_create_signal(u'users', ['Location'])
 
@@ -66,9 +66,9 @@ class Migration(SchemaMigration):
         u'users.location': {
             'Meta': {'object_name': 'Location'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'latitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '10', 'decimal_places': '5'}),
-            'longitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '10', 'decimal_places': '5'}),
-            'timeStamp': ('django.db.models.fields.DateField', [], {'default': 'datetime.datetime(2014, 12, 26, 0, 0)'}),
+            'latitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '10', 'decimal_places': '8'}),
+            'longitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '10', 'decimal_places': '8'}),
+            'timeStamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 1, 8, 0, 0)'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.User']"})
         },
         u'users.user': {
