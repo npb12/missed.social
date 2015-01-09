@@ -1,0 +1,16 @@
+{% extends "basics/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<h1>{{ user }}</h1>
+<br>
+
+<h3>Location Data</h3>
+<ul>
+  {% for l in locationData %}
+  <li>{{ l }}</li>
+  {% endfor %}
+<ul>
+
+
+{% endblock %}

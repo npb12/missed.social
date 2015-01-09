@@ -8,6 +8,7 @@ from tastypie.api import Api
 admin.autodiscover()
 
 from users.api import UserResource, LocationResource
+from users.views import *
 
 v1_api = Api(api_name='v1')
 v1_api.register(UserResource())
@@ -21,7 +22,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^profile/$', TemplateView.as_view(template_name = "pages/users/profile.html")),
-    url(r'^all/$', TemplateView.as_view(template_name = "pages/users/profile.html")),
+    url(r'^all/$', all_users),
+    url(r'^user-details/(?P<userPK>\d*)/$', user_details),
     url(r'^api/', include(v1_api.urls)),
 )
 

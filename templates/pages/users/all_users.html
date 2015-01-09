@@ -1,0 +1,15 @@
+{% extends "basics/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<h1>All Users</h1>
+<br>
+
+<ul>
+  {% for u in users %}
+  <li><a href="{% url 'users.views.user_details' u.pk %}">{{ u }}</a></li>
+  {% endfor %}
+<ul>
+
+
+{% endblock %}

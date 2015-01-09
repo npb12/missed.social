@@ -29,5 +29,5 @@ class Location(models.Model):
   timeStamp = models.DateTimeField(verbose_name = 'Time Stamp', default = datetime.datetime.now())
 
   def __unicode__(self):
-    return u'%s - %s' % (self.user, self.timeStamp)
+    return u'%s - %s [Lng: %s | Lat: %s]' % (self.user, self.timeStamp, self.longitude, self.latitude)
 
