@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+        html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2v8b3ZE_srhOc6JFbXYAcHJ8HW5Udwoo">
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var map;
+        var geocoder;
+        var locationItems;
+        var userPK = {{ userPK }};
+        var edmontonCenter = 0;
+        var bounds = new google.maps.LatLngBounds();
+        var myLatlng = new google.maps.LatLng(53.5443890,-113.4909270);
+
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var mapOptions = {
+                center: myLatlng,
+                zoom: 12
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+            var myCenter = map.getCenter();
+
+            locationItems = $.getJSON("/user/gmap-user-data/", {userPK:userPK}, function(json){
+                var num = 0;
+                $.each(json, function(key) {
+                    console.log(json[key])
+                    num = num + 1;
+                    setTimeout( function () {
+                        codeAddress(json[key]);
+                    }, num * 50);
+                });
+            });
+        }
+       function codeAddress(info) {
+            var contentString = '<div id="content" style="width:180px; height:70px"><center><b>' + info.lat + '</b><br>' + info.lng + '<br>' + info.timeStamp + '</center></div>';
+            var infoWindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var myLatLng = new google.maps.LatLng(info.lat, info.lng);
+	    var marker = new google.maps.Marker({
+		map: map,
+		position: myLatLng,
+		title: info.timeStamp,
+	    });
+	    bounds.extend(myLatLng);
+	    google.maps.event.addListener(marker, 'mouseover', function() {
+		infoWindow.open(map, marker);
+	    });
+	    google.maps.event.addListener(marker, 'mouseout', function() {
+		infoWindow.close(map, marker);
+	    });
+	    map.fitBounds(bounds);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
+

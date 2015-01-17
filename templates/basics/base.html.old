@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load staticfiles %}
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/flick/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{% static "js/main_scripts.js" %}"></script>
+    <title>missed.social</title>
+  </head>
+
+  <body>
+    <div class="row">
+      <br><br>
+      <div class="col-md-2">
+        <center>
+          <br>
+          <ul class="menu" style="width: 150px; font-family: 'Raleway'; font-size: 12px">
+            <li class="ui-widget-header">missed.social</li>
+            <li><a href="{% url 'ms.views.sample_gps_data' %}">Sample Data Form</a></li>
+            <li class="ui-widget-header">users</li>
+            <li><a href="{% url 'users.views.all_users' %}">All Users</a></li>
+          </ul>
+        </center>
+      </div>
+      <div class="col-md-9">
+        {% block content %}
+
+        {% endblock %}
+      </div>
+      <div class="col-md-1">
+      </div>
+    </div>
+  </body>
+</html>

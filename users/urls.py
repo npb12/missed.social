@@ -24,6 +24,10 @@ urlpatterns = patterns('',
     url(r'^profile/$', TemplateView.as_view(template_name = "pages/users/profile.html")),
     url(r'^all/$', all_users),
     url(r'^user-details/(?P<userPK>\d*)/$', user_details),
+    url(r'^plot-gps-points/(?P<userPK>\d*)/$', plot_gps_points),
+    url(r'^gmap-user-data/$', gmap_user_data),
+    url(r'^delete-all-data-points/$', delete_all_data_points),
+    url(r'^get-encounters/(?P<userPK>\d*)/(?P<timeFrame>\d*)/$', find_encounters),
     url(r'^api/', include(v1_api.urls)),
 )
 

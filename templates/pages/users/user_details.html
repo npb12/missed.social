@@ -5,7 +5,19 @@
 <h1>{{ user }}</h1>
 <br>
 
-<h3>Location Data</h3>
+<div class="row">
+  <div class="col-md-5">
+    <center>
+      <h3>Location Data</h3> 
+      <a class="btn btn-primary btn-pill-left" href="{% url 'users.views.plot_gps_points' user.pk %}">Plot on Google Maps</a>
+      <a class="btn btn-danger btn-pill-right" href="{% url 'users.views.delete_all_data_points' %}?userPK={{ user.pk }}">Delete All Points</a>
+    </center>
+  </div>
+</div>
+<div class="clear">
+</div>
+<br>
+<br>
 <ul>
   {% for l in locationData %}
   <li>{{ l }}</li>
