@@ -9,19 +9,13 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
 
-        # Changing field 'Location.latitude'
-        db.alter_column(u'users_location', 'latitude', self.gf('django.db.models.fields.DecimalField')(max_digits=12, decimal_places=8))
-
-        # Changing field 'Location.longitude'
-        db.alter_column(u'users_location', 'longitude', self.gf('django.db.models.fields.DecimalField')(max_digits=12, decimal_places=8))
+        # Changing field 'Location.user'
+        db.alter_column(u'users_location', 'user_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.UserProfile']))
 
     def backwards(self, orm):
 
-        # Changing field 'Location.latitude'
-        db.alter_column(u'users_location', 'latitude', self.gf('django.db.models.fields.DecimalField')(max_digits=10, decimal_places=8))
-
-        # Changing field 'Location.longitude'
-        db.alter_column(u'users_location', 'longitude', self.gf('django.db.models.fields.DecimalField')(max_digits=10, decimal_places=8))
+        # Changing field 'Location.user'
+        db.alter_column(u'users_location', 'user_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.OldUserProfile']))
 
     models = {
         u'users.interesttype': {
@@ -34,16 +28,23 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'latitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '12', 'decimal_places': '8'}),
             'longitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '12', 'decimal_places': '8'}),
-            'timeStamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 1, 12, 0, 0)'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.User']"})
+            'timeStamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 1, 22, 0, 0)'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.UserProfile']"})
         },
-        u'users.user': {
-            'Meta': {'object_name': 'User'},
+        u'users.olduserprofile': {
+            'Meta': {'object_name': 'OldUserProfile'},
             'fName': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'interestedIn': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.InterestType']", 'null': 'True'}),
             'lName': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'userType': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.UserType']", 'null': 'True'})
+        },
+        u'users.userprofile': {
+            'Meta': {'object_name': 'UserProfile'},
+            'email': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '255'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'})
         },
         u'users.usertype': {
             'Meta': {'object_name': 'UserType'},

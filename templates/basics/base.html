@@ -190,7 +190,6 @@
             </ul>
             <!-- END Left navbar-->
             <!-- START Right Navbar-->
-            {% comment %}
             <ul class="nav navbar-nav navbar-right">
                <!-- Search icon-->
                <li>
@@ -267,21 +266,10 @@
                <!-- START User menu-->
                <li class="dropdown">
                   <a href="#" data-toggle="dropdown" data-play="fadeIn" class="dropdown-toggle">
-                     <em class="fa fa-tencent-weibo"></em>
+                     <em class="fa fa-gears"></em>
                   </a>
                   <!-- START Dropdown menu-->
                   <ul class="dropdown-menu">
-                     <li>
-                        <div class="p">
-                           <p>Overall progress</p>
-                           <div class="progress progress-striped progress-xs m0">
-                              <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-success progress-70">
-                                 <span class="sr-only">70% Complete</span>
-                              </div>
-                           </div>
-                        </div>
-                     </li>
-                     <li class="divider"></li>
                      <li><a href="#">Profile</a>
                      </li>
                      <li><a href="#">Settings</a>
@@ -290,22 +278,15 @@
                      </li>
                      <li><a href="#">Messages<div class="label label-danger pull-right">10</div></a>
                      </li>
-                     <li><a href="#">Logout</a>
+                     <!-- <li><a href="{% url 'users.views.logout_user' %}">Logout</a> -->
+                     <li><a href="">Logout</a>
                      </li>
                   </ul>
                   <!-- END Dropdown menu-->
                </li>
                <!-- END User menu-->
-               <!-- START Contacts button-->
-               <li>
-                  <a href="#" data-toggle-state="offsidebar-open">
-                     <em class="fa fa-comment-o"></em>
-                  </a>
-               </li>
-               <!-- END Contacts menu-->
             </ul>
             <!-- END Right Navbar-->
-            {% endcomment %}
          </div>
          <!-- END Nav wrapper-->
          <!-- START Search form-->
@@ -327,30 +308,31 @@
                <!-- START Menu-->
                <li class="nav-heading">Main</li>
                <li>
-                  <a href="" title="Dashboard" data-toggle="collapse-next" class="has-submenu">
+                  <a href="" title="Dashboard" class="no-submenu">
                      <em class="fa fa-dot-circle-o"></em>
-                     <div class="label label-primary pull-right">10</div>
-                     <span class="item-text">Dashboard</span>
+                     <span class="item-text">dashboard</span>
                   </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="dashboard.html" title="Default" data-toggle="" class="no-submenu">
-                           <span class="item-text">Default</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="dashboard-profile.html" title="User Profile" data-toggle="" class="no-submenu">
-                           <span class="item-text">User Profile</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="dashboard-sidebar2.html" title="Two Sidebar" data-toggle="" class="no-submenu">
-                           <span class="item-text">Two Sidebar</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
+               <li>
+                  {% comment %}
+                  <!-- <a href="{% url 'users.views.profile' user.pk %}" title="profile" class="no-submenu"> -->
+                  {% endcomment %}
+                  <a href="" title="profile" class="no-submenu">
+                     <em class="fa fa-user"></em>
+                     <span class="item-text">profile</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="dashboard-profile.html" title="missed.social" data-toggle="" class="no-submenu">
+                     <div class="label label-primary pull-right">10</div>
+                     <em class="fa">m<b>s</b></em>
+                     <span class="item-text">missed.<b>social</b></span>
+                  </a>
+               </li>
+               <li>
+                  <a href="dashboard-sidebar2.html" title="Connections" data-toggle="" class="no-submenu">
+                     <em class="fa fa-exchange"></em>
+                     <span class="item-text">connections</span>
+                  </a>
                </li>
                <li>
                  <a href="" title="Admin" data-toggle="collapse-next" class="has-submenu">
@@ -380,9 +362,9 @@
       <section>
          <!-- START Page content-->
          <div class="main-content">
-            <h3>Page title
+            <h3>{{ page_title }}
                <br>
-               <small>Subtitle</small>
+               <small>{{ page_subtitle }}</small>
             </h3>
             <div class="row">
                <div class="col-lg-12">

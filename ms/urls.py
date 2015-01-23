@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'ms.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^user/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^main/$', TemplateView.as_view(template_name = "basics/base.html")),

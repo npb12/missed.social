@@ -77,10 +77,32 @@
                      <br>
                      <p class="header-subtitle">Never miss a 'once-in-a-lifetime' encounter again.<br>Just check your missed.<b>social</b> encounters.</p>
                      <br>
-                     <div class="header-button">
-                        <a href="#" class="btn btn-primary btn-lg btn-fw">
+                     <div class="header-button" id="join-div">
+                        <a href="#" class="btn btn-primary btn-lg btn-fw" id="join-button">
                            <strong>Join Now</strong>
                         </a>
+                     </div>
+                     <div id="signup-form">
+                        <!-- START FORM PANEL -->
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <form role="form" action="">
+                              <div class="form-group">
+                                <input type="text" placeholder="First Name" class="input-lg form-control form-control">
+                              </div>
+                              <div class="form-group">
+                                <input type="email" placeholder="Email Address" class="input-lg form-control form-control">
+                              </div>
+                              <div class="form-group">
+                                <br>
+                                <a href="#" class="btn btn-success btn-lg">
+                                   <strong>Let's go!</strong>
+                                </a>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        <!-- END FORM PANEL -->
                      </div>
                      <br>
                      <br>
@@ -442,6 +464,7 @@
    <script src="{% static "vendor/animo/animo.min.js" %}"></script>
    <!-- Custom script for pages-->
    <script src="{% static "js/pages.js" %}"></script>
+   <script src="{% static "js/landing.js" %}"></script>
    <!-- END Scripts-->
 </body>
 

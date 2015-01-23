@@ -1,7 +1,11 @@
 from django.contrib import admin
-from models import User, Location, InterestType, UserType
+from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-admin.site.register(User)
+from models import UserProfile, Location, InterestType, UserType
+
+admin.site.register(UserProfile)
 admin.site.register(Location)
 admin.site.register(InterestType)
 admin.site.register(UserType)

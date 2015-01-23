@@ -1,5 +1,5 @@
 from django import forms
-from users.models import User
+from users.models import UserProfile
 
 class Sample_Data_Form(forms.Form):
   HEADING_CHOICES = (
@@ -9,7 +9,7 @@ class Sample_Data_Form(forms.Form):
       ('W', 'West'),
       ('A', 'Wander'),
       )
-  allUsers = User.objects.all()
+  allUsers = UserProfile.objects.all()
   startLat = forms.DecimalField(max_digits = 10, decimal_places = 5, label = 'Starting Latitude')
   startLong = forms.DecimalField(max_digits = 10, decimal_places = 5, label = 'Starting Longitude')
   numMins = forms.DecimalField(max_digits = 4, decimal_places = 0, label = 'Trip duration in Minutes')

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 
-from users.models import User, UserType, InterestType, Location
+from users.models import UserProfile, UserType, InterestType, Location
 from ms.forms import Sample_Data_Form
 import datetime
 import random
@@ -28,6 +28,8 @@ def sample_gps_data(request):
 
   c = {
       'form':form,
+      'page_title': "Sample Data",
+      'page_subtitle': "Generate GPS data points",
       }
   return render(request, 'pages/ms/sample_gps_data.html', c)
 
@@ -44,7 +46,7 @@ def generate_sample_gps_data(lat, lng, userPK, numMins, makeStop, heading, timeS
   # This could change with car rides, etc. 
   maxDistanceInterval = 0.0001
 
-  user = User.objects.get(pk = userPK)
+  user = UserProfile.objects.get(pk = userPK)
 
   # If we need to make a stop (makeStop = True) then we need a boolean flag to keep track of whether
   # we've made that stop yet. We only want one stop per trip.

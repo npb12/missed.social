@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie ie6 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="ie ie7 lt-ie9 lt-ie8"        lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="ie ie8 lt-ie9"               lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="ie ie9"                      lang="en"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-ie">
+<!--<![endif]-->
+
+<head>
+   {% load staticfiles %}
+   <!-- Meta-->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+   <meta name="description" content="">
+   <meta name="keywords" content="">
+   <meta name="author" content="">
+   <title>missed.social</title>
+   <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+   <!-- Bootstrap CSS-->
+   <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+   <!-- Vendor CSS-->
+   <link rel="stylesheet" href="{% static "vendor/fontawesome/css/font-awesome.min.css" %}">
+   <link rel="stylesheet" href="{% static "vendor/animo/animate+animo.css" %}">
+   <!-- App CSS-->
+   <link rel="stylesheet" href="{% static "css/app.css" %}">
+   <link rel="stylesheet" href="{% static "css/common.css" %}">
+   <!-- Modernizr JS Script-->
+   <script src="{% static "vendor/modernizr/modernizr.js" %}" type="application/javascript"></script>
+   <!-- FastClick for mobiles-->
+   <script src="{% static "vendor/fastclick/fastclick.js" %}" type="application/javascript"></script>
+   <link rel="stylesheet" href="{% static "css/landing.css" %}">
+</head>
+
+<body>
+   <!-- START wrapper-->
+   <header>
+      <div class="container">
+         <nav class="row">
+            <div class="col-md-2 app-logo">
+               <a href="#" class="logo-wrapper">
+                  <img src="../app/img/logo.png" alt="App Name" class="img-responsive">
+               </a>
+            </div>
+         </nav>
+         <div class="header-content">
+            <div class="row row-flush row-table">
+               <div class="col-xs-12 col-lg-6 align-middle">
+                  <div data-toggle="play-animation" data-play="fadeInLeft" data-offset="0" class="app-presentation">
+                     <img src="../app/img/landing/app-mobile.png" alt="App Name" class="img-responsive">
+                  </div>
+               </div>
+               <div class="col-xs-12 col-lg-6 align-middle">
+                  <div class="side-presentation">
+                     <div class="h1 header-title">missed.<b>social</b></div>
+                     <br>
+                     <div id="signup-form">
+                        <!-- START FORM PANEL -->
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <form role="form" method="POST" action="{% url 'django.contrib.auth.views.login' %}">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <input type="email" placeholder="Email" class="input-lg form-control form-control">
+                              </div>
+                              <div class="form-group">
+                                <input type="password" placeholder="Password" class="input-lg form-control form-control">
+                              </div>
+                              <div class="form-group">
+                                <br>
+                                <input type="submit" class="btn btn-success btn-lg" value="Login"/>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        <!-- END FORM PANEL -->
+                     </div>
+                     <br>
+                     <br>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+   <footer class="footer-1 bg-inverse">
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-2 col-xs-6">
+               <nav>
+                  <h5>PRODUCT</h5>
+                  <ul class="list-unstyled">
+                     <li><a href="#">Documentation</a>
+                     </li>
+                     <li><a href="#">Customers</a>
+                     </li>
+                     <li><a href="#">Tour</a>
+                     </li>
+                     <li><a href="#">Pricing</a>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+               <nav>
+                  <h5>CONTACT</h5>
+                  <ul class="list-unstyled">
+                     <li><a href="#">Support</a>
+                     </li>
+                     <li><a href="#">Sales</a>
+                     </li>
+                     <li><a href="#">Forum</a>
+                     </li>
+                     <li><a href="#">Blog</a>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+               <nav>
+                  <h5>COMPANY</h5>
+                  <ul class="list-unstyled">
+                     <li><a href="#">About</a>
+                     </li>
+                     <li><a href="#">Press Kit</a>
+                     </li>
+                     <li><a href="#">Education</a>
+                     </li>
+                     <li><a href="#">Non-profits</a>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+               <nav>
+                  <h5>Say HI</h5>
+                  <ul class="list-unstyled">
+                     <li><a href="#">Twitter</a>
+                     </li>
+                     <li><a href="#">Facebook</a>
+                     </li>
+                     <li><a href="#">Google+</a>
+                     </li>
+                     <li><a href="#">Blog</a>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+            <div class="col-lg-4 col-xs-12">
+               <form action="#" method="post">
+                  <h5>SUBSCRIBE TO OUR NEWSLETTER!</h5>
+                  <div class="input-group">
+                     <input type="email" name="email" placeholder="mail@example.com" required="" class="form-control">
+                     <span class="input-group-btn">
+                        <button type="submit" class="btn btn-info">Join</button>
+                     </span>
+                  </div>
+                  <!--/input-group -->
+               </form>
+               <p class="text-muted">
+                  <small>We will never send spam and you can unsubscribe any time</small>
+               </p>
+            </div>
+         </div>
+      </div>
+   </footer>
+   <footer class="footer-2">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-4">
+               <p>Copyright 2014 | <a href="#">Terms of Service </a>| <a href="#">Privacy Policy</a>
+               </p>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+               <p>Crafted with
+                  <em class="fa fa-heart text-danger fa-fw"></em>
+                  <span>from BA, Argentina.</span>
+               </p>
+            </div>
+         </div>
+      </div>
+   </footer>
+   <!-- END wrapper-->
+   <!-- START Scripts-->
+   <!-- Main vendor Scripts-->
+   <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+   <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+   <!-- Animo-->
+   <script src="{% static "vendor/animo/animo.min.js" %}"></script>
+   <!-- Custom script for pages-->
+   <script src="{% static "js/pages.js" %}"></script>
+   <!-- END Scripts-->
+</body>
+
+</html>
