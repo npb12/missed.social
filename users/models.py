@@ -36,6 +36,9 @@ class UserManager(BaseUserManager):
 
 class UserProfile(AbstractBaseUser):
   email = models.EmailField(max_length=255, verbose_name = "Email Address", unique = True)
+  fName = models.CharField (max_length=50, verbose_name = "First Name", blank = True)
+  userType = models.ForeignKey(UserType, verbose_name = 'Related User Type', null = True)
+  interestedIn = models.ForeignKey(InterestType, verbose_name = 'Related Interested Type', null = True)
   is_active = models.BooleanField(default=True)
   is_admin = models.BooleanField(default=False)
 
@@ -69,15 +72,6 @@ class UserProfile(AbstractBaseUser):
   def is_staff(self):
     return self.is_admin
 
-class OldUserProfile(models.Model):
-  fName = models.CharField (max_length=50, verbose_name = "First Name", blank = True)
-  lName = models.CharField (max_length=50, verbose_name = "First Name", blank = True)
-  userType = models.ForeignKey(UserType, verbose_name = 'Related User Type', null = True)
-  interestedIn = models.ForeignKey(InterestType, verbose_name = 'Related Interested Type', null = True)
-
-  def __unicode__(self):
-    return u'%s, %s' % (self.lName, self.fName)
-
 class Location(models.Model):
   user = models.ForeignKey(UserProfile, verbose_name = 'Related User')
   latitude = models.DecimalField(max_digits = 12, decimal_places = 8, default = 1, verbose_name = 'Latitude')
@@ -87,3 +81,12 @@ class Location(models.Model):
   def __unicode__(self):
     return u'%s - %s [Lng: %s | Lat: %s]' % (self.user, self.timeStamp, self.longitude, self.latitude)
 
+
+class Encounter(models.Model):
+  user = models.ForeignKey(UserProfile, verbose_name = 'Related User', related_name = "user")
+  encounter = models.ForeignKey(UserProfile, verbose_name = 'Encounted User', related_name = "encounter")
+  userLoc = models.ForeignKey(Location, verbose_name = 'User\'s Location', related_name = "userLoc")
+  encounterLoc = models.ForeignKey(Location, verbose_name = 'Encounted User\'s Location', related_name = "encounterLoc")
+
+  def __unicode__(self):
+    return u'%s (%s) - %s (%s)' % (self.user, self.userLoc , self.encounter, self.encounterLoc)

@@ -4,7 +4,7 @@
 
 <ul>
   {% for u in users %}
-  <li><a href="{% url 'users.views.user_details' u.pk %}">{{ u }}</a></li>
+  <li><a href="{% url 'users.views.user_details' %}">{{ u }}</a></li>
   {% endfor %}
 <ul>
 

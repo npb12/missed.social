@@ -16,6 +16,11 @@ class UserResource(ModelResource):
 class LocationResource(ModelResource):
   user = fields.ForeignKey(UserResource, 'user')
 
+  def obj_create(self, bundle, **kwargs):
+    bundle = super(LocationResource, self).obj_create(bundle, **kwargs)
+    print("hello!!")
+    return bundle
+
   class Meta:
     queryset = Location.objects.all()
     resource_name = 'location'

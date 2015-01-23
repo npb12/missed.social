@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     url(r'^plot-gps-points/(?P<userPK>\d*)/$', plot_gps_points),
     url(r'^gmap-user-data/$', gmap_user_data),
     url(r'^delete-all-data-points/$', delete_all_data_points),
-    url(r'^get-encounters/$', find_encounters),
+    url(r'^get-encounters/$', get_encounters),
     url(r'^logout/', logout_user),
     url(r'^api/', include(v1_api.urls)),
 )

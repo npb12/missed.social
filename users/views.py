@@ -39,7 +39,7 @@ def user_details(request):
   c = {
     'user': user,
     'locationData': locationData,
-    'page_title': user.fName + " " + user.lName,
+    'page_title': user.fName,
     'page_subtitle': "Location Data",
   }
   return render(request, 'pages/users/user_details.html', c)
@@ -72,7 +72,7 @@ def gmap_user_data(request):
 
       for d in dataPoints:
         dItem = {}
-        dItem['name'] = d.user.fName + " " + d.user.lName
+        dItem['name'] = d.user.fName
         dItem['lat'] = str(d.latitude)
         dItem['lng'] = str(d.longitude)
 
@@ -91,21 +91,71 @@ def delete_all_data_points(request):
       Location.objects.filter(user__pk = userPK).delete()
   return HttpResponseRedirect("/user/user-details/" + str(userPK))
 
+"""
+Simply takes in a float and removes the trailing decimals, 
+without doing any rounding
+"""
+def chop_decimals(val, numDecimals):
+    # We turn the value into a string so we can chop off
+    # everything after the first numDecimals decimals.
+    val = str(val)
+    lead, decimals = val.split(".")
+    decimals = decimals[:numDecimals]
+    return(float(lead + "." + decimals))
+
 
 """
 Returns a dictionary of users, and time stamps, of encounters. 
 An encounter is when a person is within a certain distance of the user,
 and at the same time. 
 """
-def find_encounters(request):
-  if request.method == 'GET':
-    if request.GET.has_key('userPK'):
-      userID = request.GET['userPK']
-      user = UserProfile.objects.get(pk = userPK)
-      locs = Location.objects.filter(user = user)
-      print(locs)
-      return HttpResponse(locs)
-  return HttpResponse(request.user)
+def get_encounters(request):
+  user = UserProfile.objects.get(pk=1)
+  userLocs = Location.objects.filter(user = user)
+
+  for ul in userLocs:
+
+    """
+    First we must figure out our range for both lat and long. 4 decimal
+    places is precision of 11 meters, so we'll go with that. If we have a
+    lat value of 32.1234 then we should accept 32.1234 +/- 0.00005
+    0.00005 is half the 4 decimal accuracy, so half higher and half lower
+    of our target value gives us the full 11 meters of range.
+
+    """
+    rangeVal = 0.0002
+
+    # Lets get our ranges set up first
+    latStart = float(ul.latitude) - rangeVal
+    latEnd = float(ul.latitude) + rangeVal
+    longStart = float(ul.longitude) - rangeVal
+    longEnd = float(ul.longitude) + rangeVal
+
+    latStart = chop_decimals(latStart, 4)
+    latEnd = chop_decimals(latEnd, 4)
+    longStart = chop_decimals(longStart, 4)
+    longEnd = chop_decimals(longEnd, 4)
+
+    """
+    print(ul.latitude)
+    print(latStart)
+    print(latEnd)
+    print(ul.longitude)
+    print(longStart)
+    print(longEnd)
+    print("-----")
+    """
+
+    tmp = Location.objects.filter(timeStamp = ul.timeStamp).exclude(user = user).filter(latitude__gte = latStart).filter(latitude__lte = latEnd).filter(longitude__gte = longStart).filter(longitude__lte = longEnd)
+    for t in tmp:
+      print(t)
+      print(ul)
+      print("------")
+
+      
+
+    
+  return HttpResponse(userLocs)
 
 
 #------------- USER SPECIFIC FUNCTIONS ---------------#
@@ -115,7 +165,7 @@ def profile(request, userPK):
 
   c = {
     'user': user,
-    'page_title': user.fName + " " + user.lName,
+    'page_title': user.fName,
     'page_subtitle': "Profile",
   }
 
