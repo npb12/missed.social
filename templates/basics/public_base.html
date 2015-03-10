@@ -35,41 +35,78 @@
 </head>
 
 <body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '835081286539104',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
    <!-- START wrapper-->
    <header>
       <div class="container">
          <nav class="row">
             <div class="col-md-2 app-logo">
-               <a href="#" class="logo-wrapper">
-                  <img src="../app/img/logo.png" alt="App Name" class="img-responsive">
+               <a href="/" class="logo-wrapper">
+                  <font style="font-size:36pt; color:gray">m<b>s</b></font>
                </a>
             </div>
+            <!-- Header - Right side links -->
+            {% block rightheader %}
+            {% endblock %}
+            <!-- End Header - right side -->
          </nav>
          <div class="header-content">
             <div class="row row-flush row-table">
                <div class="col-xs-12 col-lg-6 align-middle">
                   <div data-toggle="play-animation" data-play="fadeInLeft" data-offset="0" class="app-presentation">
-                     <img src="../app/img/landing/app-mobile.png" alt="App Name" class="img-responsive">
+                     {% block slideimage %}
+                     {% endblock %}
                   </div>
                </div>
                <div class="col-xs-12 col-lg-6 align-middle">
                   <div class="side-presentation">
                      <div class="h1 header-title">missed.<b>social</b></div>
                      <br>
-                     <div id="signup-form">
-                        <!-- START FORM PANEL -->
-                                <br>
-                                <a class="btn btn-primary btn-lg" href="/facebook/connect/?next=/user/home/">Login with Facebook</a>
-                        <!-- END FORM PANEL -->
-                     </div>
+                     {% block intro %}
+                     {% endblock %}
                      <br>
                      <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <p>Available on</p>
+                     <ul class="list-inline store-list">
+                        <li>
+                           <a href="#">
+                              <img src="{% static "img/landing/store-apple.png" %}" alt="App Name" class="img-responsive">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <img src="{% static "img/landing/store-google.png" %}" alt="App Name" class="img-responsive">
+                           </a>
+                        </li>
+                     </ul>
                   </div>
                </div>
             </div>
          </div>
       </div>
    </header>
+   {% block content %}
+   {% endblock %}
    <footer class="footer-1 bg-inverse">
       <div class="container">
          <div class="row">
@@ -177,6 +214,7 @@
    <script src="{% static "vendor/animo/animo.min.js" %}"></script>
    <!-- Custom script for pages-->
    <script src="{% static "js/pages.js" %}"></script>
+   <script src="{% static "js/landing.js" %}"></script>
    <!-- END Scripts-->
 </body>
 

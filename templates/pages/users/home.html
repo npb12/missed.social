@@ -1,0 +1,7 @@
+<html>
+<body>
+<p>Hi {{ user.get_full_name|default:user.username }}</p>
+<img src="http://graph.facebook.com/{{ user.profile_or_self.facebook_id }}/picture?type=large">
+
+</body>
+</html>

@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-
-from users.models import UserProfile, UserType, InterestType, Location
+from users.models import Location
+from django.contrib.auth.models import User
 from ms.forms import Sample_Data_Form
 import datetime
 import random
 from math import ceil
+
 
 # Simple form view to collect arguments that will be passed on
 # to the generate_sample_gps_data function below
@@ -39,14 +40,15 @@ def sample_gps_data(request):
 def generate_sample_gps_data(lat, lng, userPK, numMins, makeStop, heading, timeStamp):
 
   # Number of minute intervals to generate data. Initially set at every 1 minute generate a data point
-  timeInterval = 1
+  # This should be 1, normally. Changed to 0 to generate a LOT of data points at one time stamp
+  timeInterval = 0
   
-# A maxDisctanceInterval of 0.0001 is roughly 11 meters. 
+  # A maxDisctanceInterval of 0.0001 is roughly 11 meters. 
   # So, we're saying this data can't move faster than 11 meters/interval (initially set at 11m/minute)
   # This could change with car rides, etc. 
   maxDistanceInterval = 0.0001
 
-  user = UserProfile.objects.get(pk = userPK)
+  user = User.objects.get(pk = userPK)
 
   # If we need to make a stop (makeStop = True) then we need a boolean flag to keep track of whether
   # we've made that stop yet. We only want one stop per trip.

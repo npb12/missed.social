@@ -1,0 +1,19 @@
+{% extends "basics/public_base.html" %}
+
+  {% block rightheader %}
+  {% endblock %}
+
+
+  {% block intro %}
+  <form action="" method="POST">
+  {{ form.as_p }}
+  </form>
+  <div id="facebook_login_redirect">
+                      <input type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" /><br />
+                                          (redirect version)
+                                                          </div>
+{% include 'django_facebook/_facebook_js.html' %}
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}

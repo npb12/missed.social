@@ -1,5 +1,9 @@
 from django import forms
-from users.models import UserProfile
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+from ms import settings
 
 class Sample_Data_Form(forms.Form):
   HEADING_CHOICES = (
@@ -9,7 +13,7 @@ class Sample_Data_Form(forms.Form):
       ('W', 'West'),
       ('A', 'Wander'),
       )
-  allUsers = UserProfile.objects.all()
+  allUsers = User.objects.all()
   startLat = forms.DecimalField(max_digits = 10, decimal_places = 5, label = 'Starting Latitude')
   startLong = forms.DecimalField(max_digits = 10, decimal_places = 5, label = 'Starting Longitude')
   numMins = forms.DecimalField(max_digits = 4, decimal_places = 0, label = 'Trip duration in Minutes')

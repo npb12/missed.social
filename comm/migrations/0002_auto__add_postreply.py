@@ -8,32 +8,20 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'ApiAccess'
-        db.create_table(u'tastypie_apiaccess', (
+        # Adding model 'PostReply'
+        db.create_table(u'comm_postreply', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('identifier', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('url', self.gf('django.db.models.fields.CharField')(default=u'', max_length=255, blank=True)),
-            ('request_method', self.gf('django.db.models.fields.CharField')(default=u'', max_length=10, blank=True)),
-            ('accessed', self.gf('django.db.models.fields.PositiveIntegerField')()),
+            ('post', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['comm.LocalPost'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='PostReply_user', to=orm['django_facebook.FacebookCustomUser'])),
+            ('timeStamp', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2015, 2, 28, 0, 0))),
+            ('msg', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
         ))
-        db.send_create_signal(u'tastypie', ['ApiAccess'])
-
-        # Adding model 'ApiKey'
-        db.create_table(u'tastypie_apikey', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(related_name=u'api_key', unique=True, to=orm['django_facebook.FacebookCustomUser'])),
-            ('key', self.gf('django.db.models.fields.CharField')(default=u'', max_length=128, db_index=True, blank=True)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2015, 2, 23, 0, 0))),
-        ))
-        db.send_create_signal(u'tastypie', ['ApiKey'])
+        db.send_create_signal(u'comm', ['PostReply'])
 
 
     def backwards(self, orm):
-        # Deleting model 'ApiAccess'
-        db.delete_table(u'tastypie_apiaccess')
-
-        # Deleting model 'ApiKey'
-        db.delete_table(u'tastypie_apikey')
+        # Deleting model 'PostReply'
+        db.delete_table(u'comm_postreply')
 
 
     models = {
@@ -49,6 +37,41 @@ class Migration(SchemaMigration):
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['contenttypes.ContentType']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+        },
+        u'comm.localpost': {
+            'Meta': {'object_name': 'LocalPost'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'latitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '12', 'decimal_places': '8'}),
+            'longitude': ('django.db.models.fields.DecimalField', [], {'default': '1', 'max_digits': '12', 'decimal_places': '8'}),
+            'msg': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'timeStamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 2, 28, 0, 0)'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['django_facebook.FacebookCustomUser']"})
+        },
+        u'comm.msgtouser': {
+            'Meta': {'object_name': 'msgToUser'},
+            'fromUser': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'msg_fromUser'", 'to': u"orm['django_facebook.FacebookCustomUser']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'isRead': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'msg': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'timeStamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 2, 28, 0, 0)'}),
+            'toUser': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'msg_toUser'", 'to': u"orm['django_facebook.FacebookCustomUser']"})
+        },
+        u'comm.postreply': {
+            'Meta': {'object_name': 'PostReply'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'msg': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'post': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['comm.LocalPost']"}),
+            'timeStamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 2, 28, 0, 0)'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'PostReply_user'", 'to': u"orm['django_facebook.FacebookCustomUser']"})
+        },
+        u'comm.wave': {
+            'Meta': {'object_name': 'Wave'},
+            'fromUser': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'wave_fromUser'", 'to': u"orm['django_facebook.FacebookCustomUser']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'isAccepted': ('django.db.models.fields.CharField', [], {'default': "'U'", 'max_length': '2'}),
+            'isSeen': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'timeStamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 2, 28, 0, 0)'}),
+            'toUser': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'wave_toUser'", 'to': u"orm['django_facebook.FacebookCustomUser']"})
         },
         u'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
@@ -86,22 +109,7 @@ class Migration(SchemaMigration):
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'}),
             'website_url': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})
-        },
-        u'tastypie.apiaccess': {
-            'Meta': {'object_name': 'ApiAccess'},
-            'accessed': ('django.db.models.fields.PositiveIntegerField', [], {}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'identifier': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'request_method': ('django.db.models.fields.CharField', [], {'default': "u''", 'max_length': '10', 'blank': 'True'}),
-            'url': ('django.db.models.fields.CharField', [], {'default': "u''", 'max_length': '255', 'blank': 'True'})
-        },
-        u'tastypie.apikey': {
-            'Meta': {'object_name': 'ApiKey'},
-            'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2015, 2, 23, 0, 0)'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'key': ('django.db.models.fields.CharField', [], {'default': "u''", 'max_length': '128', 'db_index': 'True', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "u'api_key'", 'unique': 'True', 'to': u"orm['django_facebook.FacebookCustomUser']"})
         }
     }
 
-    complete_apps = ['tastypie']
+    complete_apps = ['comm']

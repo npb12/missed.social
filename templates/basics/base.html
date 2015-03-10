@@ -25,6 +25,7 @@
    <link rel="stylesheet" href="{% static "vendor/fontawesome/css/font-awesome.min.css" %}">
    <link rel="stylesheet" href="{% static "vendor/animo/animate+animo.css" %}">
    <link rel="stylesheet" href="{% static "vendor/csspinner/csspinner.min.css" %}">
+   <link href="{{ STATIC_URL }}django_facebook/css/facebook.css" type="text/css" rel="stylesheet" media="all" />
    <!-- START Page Custom CSS-->
    <!-- END Page Custom CSS-->
    <!-- App CSS-->
@@ -36,6 +37,7 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
    <!-- START Main wrapper-->
    <div class="wrapper">
       <!-- START Top Navbar-->
@@ -410,6 +412,7 @@
    <!-- END Page Custom Script-->
    <!-- App Main-->
    <script src="{% static "js/app.js" %}" type="application/javascript"></script>
+   <!-- hello!? -->
    <!-- END Scripts-->
 </body>
 
