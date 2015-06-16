@@ -2,8 +2,8 @@ from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django_facebook.utils import get_user_model, get_profile_model
 from django_facebook.models import FacebookModel, FacebookCustomUser
 from django.db.models.signals import post_save
